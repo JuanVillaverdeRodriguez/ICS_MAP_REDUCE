@@ -24,9 +24,9 @@ for filename in os.listdir(folder_path):
                 town_name = filename.split("-")[2].split(".")[0]
                 # Aplica el filtro de temperatura
                 if max_temperature >= 27.0:
-                	print("Max\t%s:%s" % (town_name, max_temperature))
+                	print("%s\t%s" % (max_temperature, town_name))
                 if (min_temperature <= -1.0) or (min_temperature >= -273.15):
-                	print("Min\t%s:%s" % (town_name, min_temperature))
+                	print("%s\t%s" % (min_temperature, town_name))
                	
                 
                 
