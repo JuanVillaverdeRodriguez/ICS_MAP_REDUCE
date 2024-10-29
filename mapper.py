@@ -13,12 +13,11 @@ for filename in os.listdir(folder_path):
         # Abre y procesa cada archivo línea por línea
         with open(file_path, 'r') as file:
             for line in file:
-                # Elimina espacios en blanco al inicio y al final
+                # Eliminar espacios
                 line = line.strip()
-                
-                # Divide la línea en valores
                 values = line.split()
 
+<<<<<<< HEAD
                 # Extrae la temperatura (en este caso, asumimos que está en la posición 5)
                 max_temperature = float(values[5])
                 min_temperature = float(values[6])
@@ -36,3 +35,13 @@ for filename in os.listdir(folder_path):
                 # print('%s\t%s' % (temperature, 1))  
                 nombreCiudad = filename.split("-")[2].split(".")[0]
                 print('%s\t\t\t%s\t%s\t%s' % (nombreCiudad, max_temperature, min_temperature, 1)) 
+=======
+                # Temperatura maxima
+                temperature = float(values[5])
+
+                if -1.0 <= temperature <= 27.0:
+                    continue
+
+                nombreCiudad = filename.split("-")[2]
+                print('Ciudad: %s %s \t%s' % (nombreCiudad, temperature, 1)) 
+>>>>>>> 61df17962067a69a84a102f24c74a91be0f7cb20
