@@ -1,0 +1,8 @@
+Guardar los datos en el hdfs
+  hdfs dfs -put libros
+
+Ejecutar el hadoop con mas de un reducer
+  sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar -D mapreduce.job.reduces=2 -input libros -output salida_libros -mapper mapper.py -reducer reducer.py -file mapper.py -file reducer.py
+
+Ejecutar solo el mapper
+  sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar -input libros -output salida_temperaturas -mapper mapper.py -file mapper.py
