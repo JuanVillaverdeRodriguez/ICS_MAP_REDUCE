@@ -2,53 +2,48 @@
 
 import sys
 
-
-current_max_temperature = 0
-current_min_temperature = 0
-current_town_name = ""
-town_name = ""
-first_temp = 0
-last_temp = 0
-first_town = None
-last_town = None
 first = True
+mode = ""
+places = ""
+temp = ""
+count = 0
 
 
 # input comes from STDIN
 for line in sys.stdin:
-
+    
     # remove leading and trailing whitespace
     line = line.strip()
+    keys, new_place = line.split('\t', 1)
+    new_mode, new_temp = keys.split(':',1)
 
     if first:
         first = False
-        first_temp, first_town = line.split('\t', 1)
+        mode = new_mode
+        temp = new_temp
+        places = new_place 
     else:
-        last_temp, last_town = line.split('\t', 1)
-    
+        if (mode == "Max"):
+            if (new_temp == temp):
+                count = count + 1
+                places = places + ", " + new_place
+        elif (mode == "Min"):
+            if (new_temp != temp):
+                places = new_place
+                temp = new_temp
+                count = 0
+            else:
+                count = count + 1
+                places = places + ", " + new_place
 
-    '''# parse the input we got from mapper.py
-    temperature, town = line.split('\t', 1)
-
-    # convert count (currently a string) to int
-    try:
-        count = int(count)
-    except ValueError:
-        # count was not a number, so silently
-        # ignore/discard this line
-        continue
-
-    # this IF-switch only works because Hadoop sorts map output
-    # by key (here: word) before it is passed to the reducer
-    if current_word == word:
-        current_count += count
+if (mode == "Max"):
+    if (count == 0):
+        print ('El lugar con mas calor fue %s con %s grados' % (places, temp))
     else:
-        if current_word:
-            # write result to STDOUT
-            print ('%s\t%s' % (current_word, current_count))
-        current_count = count
-        current_word = word'''
+        print ('Los lugares con mas calor fueron %s con %s grados' % (places, temp))
+else: 
+    if (count == 0):
+        print ('El lugar mas frio fue %s con %s grados' % (places, temp))
+    else:
+        print ('Los lugares mas frio fueron %s con %s grados' % (places, temp))
 
-# do not forget to output the last word if needed!
-print ('%s\t%s' % (first_temp, first_town))
-print ('%s\t%s' % (last_temp, last_town))
