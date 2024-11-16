@@ -3,47 +3,40 @@
 import sys
 
 first = True
+real_max_count = 0
+current_max_count = 0
+real_max_string = ""
+current_max_string = ""
 mode = ""
-places = ""
-temp = ""
-count = 1
-
 
 # input comes from STDIN
 for line in sys.stdin:
     
     # remove leading and trailing whitespace
     line = line.strip()
-    keys, new_place = line.split('\t', 1)
-    new_mode, new_temp = keys.split(':',1)
+    keys, current_count = line.split('\t', 1)
+    mode, current_string = keys.split(':',1)
+    current_count = int(current_count)
 
     if first:
         first = False
-        mode = new_mode
-        temp = new_temp
-        places = new_place 
+        real_max_count = current_count
+        real_max_string = current_string
+        current_max_string = current_string
+        current_max_count = current_count
     else:
-        if (mode == "Max"):
-            if (new_temp == temp):
-                count = count + 1
-                places = places + ", " + new_place
-        elif (mode == "Min"):
-            if (new_temp != temp):
-                places = new_place
-                temp = new_temp
-                count = 1
-            else:
-                count = count + 1
-                places = places + ", " + new_place
+        if (current_string == current_max_string):
+            current_max_count = current_max_count + current_count
+        else:
+            if (current_max_count >= real_max_count):
+                real_max_count = current_max_count
+                real_max_string = current_max_string
+            current_max_string = current_string
+            current_max_count = current_count
 
-if (mode == "Max"):
-    if (count == 1):
-        print ('El lugar con mas calor fue %s con %s grados' % (places, temp))
-    else:
-        print ('Los lugares con mas calor fueron %s con %s grados' % (places, temp))
+
+if (mode == "1"):
+    print ('El usuario que mas visito paginas .ps fue %s visitando %s paginas.' % (real_max_string, real_max_count))
 else: 
-    if (count == 1):
-        print ('El lugar mas frio fue %s con %s grados' % (places, temp))
-    else:
-        print ('Los lugares mas frio fueron %s con %s grados' % (places, temp))
+    print ('El lugar mas visitado fue %s con %s visitas' % (real_max_string, real_max_count))
 
