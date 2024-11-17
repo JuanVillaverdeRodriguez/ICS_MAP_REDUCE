@@ -11,9 +11,9 @@ init: 1 2
   -D mapreduce.job.maps=5 \
 	-D mapreduce.job.reduces=3 \
 	-D stream.num.map.output.key.fields=2 \
-	-D map.output.key.field.separator=: \
+	-D mapreduce.map.output.key.field.separator=: \
   -D mapreduce.partition.keypartitioner.options=-k1,1 \
-	-D mapred.text.key.comparator.options=-k2,2nr \
+	-D mapreduce.partition.keycomparator.options=-k2,2nr \
 	-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
 	-input Feb95 -output salida_logs \
 	-mapper mapper.py -reducer reducer.py \
@@ -23,11 +23,10 @@ init: 1 2
 3m: 
 	sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar \
 	-D mapreduce.job.maps=5 \
-	-D mapreduce.job.reduces=3 \
+	-D mapreduce.job.reduces=2 \
 	-D stream.num.map.output.key.fields=2 \
-	-D map.output.key.field.separator=: \
+	-D mapreduce.map.output.key.field.separator=: \
   -D mapreduce.partition.keypartitioner.options=-k1,1 \
-	-D mapred.text.key.comparator.options=-k2,2nr \
 	-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
 	-input Feb95 -output salida_logs_mapper \
 	-mapper mapper.py -file mapper.py 

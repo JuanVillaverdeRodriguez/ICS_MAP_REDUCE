@@ -24,10 +24,10 @@ init: 1 2
 	sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar \
 	-D mapreduce.job.maps=5 \
 	-D stream.num.map.output.key.fields=2 \
-	-D map.output.key.field.separator=: \
+	-D mapreduce.map.output.key.field.separator=: \
   -D mapreduce.partition.keypartitioner.options=-k1,1 \
-	-D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
-	-D mapred.text.key.comparator.options=-k2,2nr \
+	-D mapreduce.job.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
+	-D mapreduce.partition.keycomparator.options=-k2,2nr \
 	-D mapreduce.job.reduces=3 \
 	-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
 	-input TEMPERATURAS -output salida_temperaturas_mapper \
