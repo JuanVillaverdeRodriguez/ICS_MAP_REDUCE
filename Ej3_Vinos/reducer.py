@@ -2,41 +2,41 @@
 
 import sys
 
+current_key = ""
+adder = 0
+counter = 0
 first = True
-real_max_count = 0
-current_max_count = 0
-real_max_string = ""
-current_max_string = ""
-mode = ""
 
 # input comes from STDIN
 for line in sys.stdin:
     
     # remove leading and trailing whitespace
     line = line.strip()
-    keys, current_count = line.split('\t', 1)
-    mode, current_string = keys.split(':',1)
-    current_count = int(current_count)
+    key, value = line.split('\t', 1)
+    #type_wine, type_value = keys.split(':',1)
 
-    if first:
+    try:
+        value = float(value)
+    except ValueError:
+        exit(1)
+    
+    if (first):
+        current_key = key
         first = False
-        real_max_count = current_count
-        real_max_string = current_string
-        current_max_string = current_string
-        current_max_count = current_count
+
+    if (current_key == key):
+        adder += value
+        counter += 1
     else:
-        if (current_string == current_max_string):
-            current_max_count = current_max_count + current_count
-        else:
-            if (current_max_count >= real_max_count):
-                real_max_count = current_max_count
-                real_max_string = current_max_string
-            current_max_string = current_string
-            current_max_count = current_count
+        average = adder / counter
+        print("La media de valores de %s es: %f" % (current_key, average))
 
+        current_key = key
+        counter = 0
+        adder = 0
 
-if (mode == "1"):
-    print ('El usuario que mas visito paginas .ps fue %s visitando %s paginas.' % (real_max_string, real_max_count))
-else: 
-    print ('El lugar mas visitado fue %s con %s visitas' % (real_max_string, real_max_count))
+        adder += value
+        counter += 1
 
+average = adder / counter
+print("La media de valores de %s es: %f" % (current_key, average))
