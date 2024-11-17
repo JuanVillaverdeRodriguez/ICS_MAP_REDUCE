@@ -38,6 +38,9 @@ init: 1 2
 4m: 
 	hdfs dfs -get salida_logs_mapper
 
+5:
+	cat salida_logs/* | sort > solución.txt
+
 clean: 
 	hdfs dfs -rm -r salida_logs
 	rm -r salida_logs
@@ -46,6 +49,6 @@ cleanm:
 	hdfs dfs -rm -r salida_logs_mapper
 	rm -r salida_logs_mapper
 
-run: 3 4
+run: 3 4 5
 
 runm: 3m 4m

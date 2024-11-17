@@ -40,6 +40,9 @@ init: 1 2
 4m: 
 	hdfs dfs -get salida_temperaturas_mapper
 
+5:
+	cat salida_temperaturas/* | sort > solución.txt
+
 clean: 
 	hdfs dfs -rm -r salida_temperaturas
 	rm -r salida_temperaturas
@@ -48,6 +51,6 @@ cleanm:
 	hdfs dfs -rm -r salida_temperaturas_mapper
 	rm -r salida_temperaturas_mapper
 
-run: 3 4
+run: 3 4 5
 
 runm: 3m 4m

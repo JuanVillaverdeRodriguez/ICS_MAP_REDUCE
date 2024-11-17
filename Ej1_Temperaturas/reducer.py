@@ -23,27 +23,18 @@ for line in sys.stdin:
         temp = new_temp
         places = new_place 
     else:
-        if (mode == "Max"):
-            if (new_temp == temp):
-                count = count + 1
-                places = places + ", " + new_place
-        elif (mode == "Min"):
-            if (new_temp != temp):
-                places = new_place
-                temp = new_temp
-                count = 1
-            else:
-                count = count + 1
-                places = places + ", " + new_place
+        if (new_temp == temp):
+            count = count + 1
+            places = places + ", " + new_place
 
 if (mode == "Max"):
     if (count == 1):
         print ('El lugar con mas calor fue %s con %s grados' % (places, temp))
     else:
         print ('Los lugares con mas calor fueron %s con %s grados' % (places, temp))
-else: 
+elif (mode == "Min"): 
     if (count == 1):
-        print ('El lugar mas frio fue %s con %s grados' % (places, temp))
+        print ('El lugar mas frio fue %s con -%s grados' % (places, temp))
     else:
-        print ('Los lugares mas frio fueron %s con %s grados' % (places, temp))
+        print ('Los lugares mas frio fueron %s con -%s grados' % (places, temp))
 

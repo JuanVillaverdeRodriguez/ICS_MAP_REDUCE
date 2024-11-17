@@ -37,6 +37,6 @@ for line in sys.stdin:
 
 if (mode == "1"):
     print ('El usuario que mas visito paginas .ps fue %s visitando %s paginas.' % (real_max_string, real_max_count))
-else: 
+elif(mode == "2"): 
     print ('El lugar mas visitado fue %s con %s visitas' % (real_max_string, real_max_count))
 

@@ -15,19 +15,18 @@ for line in sys.stdin:
     key, value = line.split('\t', 1)
     #type_wine, type_value = keys.split(':',1)
 
+
     try:
         value = float(value)
     except ValueError:
-        exit(1)
+        continue
     
     if (first):
         current_key = key
         first = False
 
-    if (current_key == key):
-        adder += value
-        counter += 1
-    else:
+    if (current_key != key):
+   
         average = adder / counter
         print("La media de valores de %s es: %f" % (current_key, average))
 
@@ -35,8 +34,9 @@ for line in sys.stdin:
         counter = 0
         adder = 0
 
-        adder += value
-        counter += 1
-
-average = adder / counter
-print("La media de valores de %s es: %f" % (current_key, average))
+    adder += value
+    counter += 1
+    
+if (counter != 0):
+    average = adder / counter
+    print("La media de valores de %s es: %f" % (current_key, average))

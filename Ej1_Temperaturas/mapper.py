@@ -18,7 +18,7 @@ for line in sys.stdin:
     if max_temperature >= 27.0:
         print("Max:%s\t%s" % (max_temperature, town_name))
     if (min_temperature <= -1.0) and (min_temperature >= -273.15):
-        print("Min:%s\t%s" % (min_temperature, town_name))
+        print("Min:%s\t%s" % (abs(min_temperature), town_name))
                    
                 
                 
