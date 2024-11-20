@@ -3,9 +3,9 @@
 ## 📂 Organización
 
 Cada uno de los ejercicios está ubicado en su propia carpeta. Estas carpetas incluyen:
+- **Archivos de entrada**: Datos necesarios para la ejecución de cada ejercicio.
 - **`mapper.py`**: Script que implementa la funcionalidad del Mapper.
 - **`reducer.py`**: Script que implementa la funcionalidad del Reducer.
-- **Archivos de entrada**: Datos necesarios para la ejecución de cada ejercicio.
 - **`Makefile`**: Facilita la ejecución de las tareas comunes.
 
 ## 🚀 Ejecución
