@@ -15,7 +15,11 @@ for line in sys.stdin:
     key, value = line.split('\t', 1)
     #type_wine, type_value = keys.split(':',1)
 
-
+    # red:fixed_acidity
+    # red:volatile_acidity
+    # white:fixed_acidity
+    # white:volatile_acidity
+    
     try:
         value = float(value)
     except ValueError:

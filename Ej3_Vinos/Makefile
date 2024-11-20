@@ -8,7 +8,7 @@ init: 1 2
 
 3:
 	sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar \
-  -D mapreduce.job.maps=5 \
+  -D mapreduce.job.maps=6 \
 	-D mapreduce.job.reduces=12 \
 	-input Vinos -output salida_vinos \
 	-mapper mapper.py -reducer reducer.py \
@@ -29,7 +29,7 @@ clean:
 
 3m: 
 	sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar \
-	-D mapreduce.job.maps=5 \
+	-D mapreduce.job.maps=6 \
 	-D mapreduce.job.reduces=12 \
 	-input Vinos -output salida_vinos_mapper \
 	-mapper mapper.py -file mapper.py 

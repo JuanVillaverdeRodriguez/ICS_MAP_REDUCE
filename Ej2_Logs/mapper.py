@@ -3,11 +3,8 @@ import sys
 import os
 
 for line in sys.stdin:
-    #user_number = ""
     user_number = os.environ['mapreduce_map_input_file'].split('/')[-1].split('.')[0]
-    #town_name = os.environ['mapreduce_map_input_file'].split('/')[-1].split('.')[0][3:]
     
-    # Eliminar espacios
     line = line.strip()
     values = line.split()
 

@@ -8,6 +8,7 @@ init: 1 2
 
 3:
 	sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar \
+	-D mapreduce.job.maps=6 \
   -D stream.num.map.output.key.fields=2 \
 	-D map.output.key.field.separator=: \
   -D mapreduce.partition.keypartitioner.options=-k1,1 \
