@@ -20,6 +20,18 @@ init: 1 2
 	-file /home/cloudera/practicas/Ej2_Logs/mapper.py \
 	-file /home/cloudera/practicas/Ej2_Logs/reducer.py
 
+4: 
+	hdfs dfs -get salida_logs
+
+5:
+	cat salida_logs/* | sort > solución.txt
+
+run: 3 4 5
+
+clean: 
+	hdfs dfs -rm -r salida_logs
+	rm -r salida_logs
+
 3m: 
 	sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar \
 	-D mapreduce.job.maps=5 \
@@ -31,24 +43,12 @@ init: 1 2
 	-input Feb95 -output salida_logs_mapper \
 	-mapper mapper.py -file mapper.py 
 
-
-4: 
-	hdfs dfs -get salida_logs
-
 4m: 
 	hdfs dfs -get salida_logs_mapper
 
-5:
-	cat salida_logs/* | sort > solución.txt
-
-clean: 
-	hdfs dfs -rm -r salida_logs
-	rm -r salida_logs
+runm: 3m 4m
 
 cleanm: 
 	hdfs dfs -rm -r salida_logs_mapper
 	rm -r salida_logs_mapper
 
-run: 3 4 5
-
-runm: 3m 4m

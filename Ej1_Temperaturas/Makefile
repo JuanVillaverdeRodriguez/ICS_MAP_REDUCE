@@ -20,6 +20,18 @@ init: 1 2
 	-file /home/cloudera/practicas/Ej1_Temperaturas/mapper.py \
 	-file /home/cloudera/practicas/Ej1_Temperaturas/reducer.py
 
+4: 
+	hdfs dfs -get salida_temperaturas
+
+5:
+	cat salida_temperaturas/* | sort > solución.txt
+
+run: 3 4 5
+
+clean: 
+	hdfs dfs -rm -r salida_temperaturas
+	rm -r salida_temperaturas
+
 3m: 
 	sudo /usr/bin/hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.7.0.jar \
 	-D mapreduce.job.maps=5 \
@@ -33,24 +45,13 @@ init: 1 2
 	-input TEMPERATURAS -output salida_temperaturas_mapper \
 	-mapper mapper.py -file mapper.py 
 
-
-4: 
-	hdfs dfs -get salida_temperaturas
-
 4m: 
 	hdfs dfs -get salida_temperaturas_mapper
 
-5:
-	cat salida_temperaturas/* | sort > solución.txt
-
-clean: 
-	hdfs dfs -rm -r salida_temperaturas
-	rm -r salida_temperaturas
+runm: 3m 4m
 
 cleanm: 
 	hdfs dfs -rm -r salida_temperaturas_mapper
 	rm -r salida_temperaturas_mapper
 
-run: 3 4 5
 
-runm: 3m 4m
